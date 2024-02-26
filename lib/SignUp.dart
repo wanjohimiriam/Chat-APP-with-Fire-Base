@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, non_constant_identifier_names
 
+import 'package:chat_app_f/home.dart';
+import 'package:chat_app_f/hommy.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -25,7 +27,7 @@ class _SignUpState extends State<SignUp> {
                 child: TextButton(
                   onPressed: (){
                     if (formkey.currentState!.validate()){
-                      //register();
+                      Navigator.pushNamed(context, '/second');
                     }
                   },
                   child: Container(

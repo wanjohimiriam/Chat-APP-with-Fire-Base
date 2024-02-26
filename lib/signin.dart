@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:chat_app_f/home.dart';
+import 'package:chat_app_f/hommy.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -11,6 +13,7 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   bool valuefirst = false;
+  GlobalKey<FormState> formkey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +21,36 @@ class _SignInState extends State<SignIn> {
       child: Column(
         children: [
           Screen_Two(),
+          TextButton(
+            onPressed: () {
+              if (formkey.currentState!.validate()) {
+                Navigator.pushNamed(context, '/second');
+              }
+            },
+            child: Container(
+              width: 250,
+              height: 40,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 7, 33, 54),
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(20.0),
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                        blurRadius: 1.0,
+                        spreadRadius: 1,
+                        color: Colors.black12,
+                        offset: Offset(4, 4))
+                  ]),
+              child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Center(
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(color: Colors.white, fontSize: 15.0),
+                    ),
+                  )),
+            ),
+          ),
           Bottom(),
         ],
       ),
