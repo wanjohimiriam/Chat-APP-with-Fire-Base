@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:chat_app_f/home.dart';
+import 'package:chat_app_f/features/user_auth/presentation/widgets/form_container_widget.dart';
 import 'package:chat_app_f/hommy.dart';
 import 'package:flutter/material.dart';
 
@@ -27,28 +27,34 @@ class _SignInState extends State<SignIn> {
                 Navigator.pushNamed(context, '/second');
               }
             },
-            child: Container(
-              width: 250,
-              height: 40,
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 7, 33, 54),
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(20.0),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        blurRadius: 1.0,
-                        spreadRadius: 1,
-                        color: Colors.black12,
-                        offset: Offset(4, 4))
-                  ]),
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Center(
-                    child: Text(
-                      'Sign In',
-                      style: TextStyle(color: Colors.white, fontSize: 15.0),
-                    ),
-                  )),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SafeHome()));
+              },
+              child: Container(
+                width: 250,
+                height: 40,
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 7, 33, 54),
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(20.0),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                          blurRadius: 1.0,
+                          spreadRadius: 1,
+                          color: Colors.black12,
+                          offset: Offset(4, 4))
+                    ]),
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Center(
+                      child: Text(
+                        'Sign In',
+                        style: TextStyle(color: Colors.white, fontSize: 15.0),
+                      ),
+                    )),
+              ),
             ),
           ),
           Bottom(),
@@ -79,67 +85,24 @@ class _SignInState extends State<SignIn> {
           Form(
               child: Column(
             children: [
-              Container(
-                width: 280,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(17.0),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                          blurRadius: 1.5,
-                          spreadRadius: 1,
-                          color: Colors.black26,
-                          offset: Offset(4, 4))
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-
-                      //controller: TextEditingController(text: "Full Name"),
-                      style: TextStyle(fontSize: 15),
-                      decoration: InputDecoration(
-                          hintText: "Full Name",
-                          icon: Icon(
-                            Icons.person,
-                            color: Color.fromARGB(255, 7, 33, 54),
-                          ),
-                          // iconColor: Color.fromARGB(255, 22, 1, 59),
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none))),
-                ),
+              FormContainerWidget(
+                hintText: "Full Name",
+                isPasswordField: false,
+                validator: (value) {
+                  return (value!.isEmpty) ? 'Input Field Required' : null;
+                },
+                icon: Icon(Icons.person, color: Color.fromARGB(255, 7, 33, 54)),
               ),
               SizedBox(
                 height: 20,
               ),
-              Container(
-                width: 280,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(17.0),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                          blurRadius: 1.5,
-                          spreadRadius: 1,
-                          color: Colors.black26,
-                          offset: Offset(4, 4))
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                      //controller: TextEditingController(text: "Full Name"),
-                      style: TextStyle(fontSize: 15),
-                      decoration: InputDecoration(
-                          hintText: "Password",
-                          icon: Icon(Icons.lock,
-                              color: Color.fromARGB(255, 7, 33, 54)),
-                          suffixIcon: Icon(Icons.visibility,
-                              color: Color.fromARGB(255, 7, 33, 54)),
-                          // iconColor: Color.fromARGB(255, 7, 33, 54),
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none))),
-                ),
+              FormContainerWidget(
+                hintText: "password",
+                validator: (value) {
+                  return (value!.isEmpty) ? 'Input Field Required' : null;
+                },
+                isPasswordField: false,
+                icon: Icon(Icons.lock, color: Color.fromARGB(255, 7, 33, 54)),
               ),
             ],
           )),
